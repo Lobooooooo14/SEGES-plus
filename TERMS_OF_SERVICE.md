@@ -11,7 +11,7 @@
     - [Modificações no Site Original](#modificações-no-site-original)
     - [Projeto Estudantil](#projeto-estudantil)
   - [3. Segurança e Integridade](#3-segurança-e-integridade)
-    - [Armazenamento Local Seguro](#armazenamento-local-seguro)
+    - [Armazenamento Local](#armazenamento-local)
     - [Política Anti-Coleta de Dados](#política-anti-coleta-de-dados)
   - [4. Condições de Uso](#4-condições-de-uso)
 
