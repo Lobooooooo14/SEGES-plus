@@ -1,0 +1,7 @@
+{
+  "name": "seges-plus",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}

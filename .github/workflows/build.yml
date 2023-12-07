@@ -1,0 +1,68 @@
+name: Create draft release
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+*'
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      
+        # Install Node 
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/hydrogen
+          cache: npm
+      
+        # Install Java
+      - name: Install Java
+        uses: actions/setup-java@v1.4.3
+        with:
+          java-version: 17
+      
+        # Install Glradle
+      - name: Install Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: 7.6
+
+        # Install NPM dependencies
+      - name: Install NPM Dependencies
+        run: npm ci
+        
+        # Decode keystore
+      - name: Decode keystore
+        run: |
+          mkdir -p ./android/keystore/
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > ./android/keystore/release.keystore
+        
+        # Build APK
+      - name: Build APK
+        run: |
+          npm run build:android
+          rm -rf ./android/keystore/release.keystore
+          
+          mv ./android/app/build/outputs/apk/release/app-release-signed.apk ./android/app/build/outputs/apk/release/SEGES+.apk
+          rm -rf ./android/app/build/outputs/apk/release/app-release-unsigned.apk
+
+        env:
+          KEYSTOREPASS: ${{ secrets.KEYSTOREPASS }}
+          KEYSTOREALIASPASS: ${{ secrets.KEYSTOREALIASPASS }}
+          KEYSTOREALIAS: ${{ secrets.KEYSTOREALIAS }}
+          WORKFLOW: true
+        
+        # Create draft release
+      - name: Create draft release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          files: |
+            ./android/app/build/outputs/apk/release/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

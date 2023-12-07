@@ -1,0 +1,29 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  width: 80%;
+  max-width: 600px;
+  padding: 10px;
+  border: solid 1px var(--ion-color-primary);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+ion-text > h1,
+a,
+p {
+  text-align: center;
+}
+
+a {
+  text-align: center;
+  text-decoration: none;
+}
