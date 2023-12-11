@@ -1,5 +1,5 @@
 import { IonApp, setupIonicReact } from "@ionic/react"
-import Routes from "./Routes"
+import Routes from "./routes"
 
 setupIonicReact()
 

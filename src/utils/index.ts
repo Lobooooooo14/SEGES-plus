@@ -1,3 +1,4 @@
-import { validateCPF, validatePassword } from "./inputValidation"
+import * as validations from "./validations"
+import * as handles from "./handles"
 
-export { validateCPF, validatePassword }
+export { validations, handles }

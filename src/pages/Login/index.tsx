@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 import { useMaskito } from "@maskito/react"
 import {
   IonBadge,
@@ -8,14 +8,23 @@ import {
   IonInput,
   IonPage,
   IonText,
-  useIonLoading
+  IonToast,
+  useIonLoading,
+  useIonRouter
 } from "@ionic/react"
 
-import { validateCPF, validatePassword } from "../../utils"
+import { Seges } from "@/classes"
+import { validations, handles } from "@/utils"
 
 import "./style.css"
 
+import { InputInputEventDetail, IonInputCustomEvent } from "@ionic/core"
+
+const SEGES = new Seges()
+
 const Login: React.FC = () => {
+  const router = useIonRouter()
+
   const [cpf, setCpf] = useState<string>("")
   const [password, setPassword] = useState<string>("")
 
@@ -26,7 +35,10 @@ const Login: React.FC = () => {
   const [passwordIsValid, setPasswordIsValid] = useState<boolean>(false)
 
   const [present, dismiss] = useIonLoading()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
+
+  const [toastIsOpen, setToastIsOpen] = useState<boolean>(false)
+  const [toastMessage, setToastMessage] = useState<string>("")
 
   const CPFMask = useMaskito({
     options: {
@@ -49,6 +61,45 @@ const Login: React.FC = () => {
     }
   })
 
+  const handleCPF = (event: IonInputCustomEvent<InputInputEventDetail>) => {
+    const value = event.detail.value!
+
+    setCpf(value)
+    if (value === "") return
+    validations.validateCPF(value) ? setCPFIsValid(true) : setCPFIsValid(false)
+  }
+
+  const handlePassword = (
+    event: IonInputCustomEvent<InputInputEventDetail>
+  ) => {
+    const value = event.detail.value!
+
+    setPassword(value)
+    if (value === "") return
+
+    validations.validatePassword(value)
+      ? setPasswordIsValid(true)
+      : setPasswordIsValid(false)
+  }
+
+  const handleSubmit = () => {
+    setLoading(true)
+    present({
+      message: "Carregando"
+    })
+    SEGES.login(handles.handleCPF(cpf), password)
+      .then(() => {
+        setLoading(false)
+        dismiss()
+        router.push("/home", "root")
+      })
+
+      .catch((error) => {
+        setToastMessage(`Erro: ${error}`)
+        setToastIsOpen(true)
+      })
+  }
+
   return (
     <IonPage>
       <IonContent fullscreen scrollY={false}>
@@ -70,13 +121,7 @@ const Login: React.FC = () => {
               placeholder="000.000.000-00"
               errorText="CPF inválido"
               value={cpf}
-              onIonInput={(e) => {
-                const value = e.detail.value!
-
-                setCpf(value)
-                if (value === "") return
-                validateCPF(value) ? setCPFIsValid(true) : setCPFIsValid(false)
-              }}
+              onIonInput={(e) => handleCPF(e)}
               onIonBlur={() => setCPFIsTouched(true)}
               ref={async (cardRef) => {
                 if (cardRef) {
@@ -98,35 +143,24 @@ const Login: React.FC = () => {
               errorText="Formato de senha inválida"
               minlength={6}
               value={password}
-              onIonInput={(e) => {
-                const value = e.detail.value!
-
-                setPassword(value)
-                if (value === "") return
-
-                validatePassword(value)
-                  ? setPasswordIsValid(true)
-                  : setPasswordIsValid(false)
-              }}
+              onIonInput={(e) => handlePassword(e)}
               onIonBlur={() => setPasswordIsTouched(true)}
             />
             <IonButton
               disabled={!CPFIsValid || !passwordIsValid || loading}
-              onClick={() => {
-                setLoading(true)
-                present({
-                  message: "Carregando",
-                  duration: 1000
-                })
-
-                // TODO: implement login
-
-                setLoading(false)
-              }}
+              onClick={() => handleSubmit()}
             >
               Entrar
             </IonButton>
-            <Link to="/forget-password">Esqueceu sua senha?</Link>
+            <IonToast
+              isOpen={toastIsOpen}
+              message={toastMessage}
+              onDidDismiss={() => setToastIsOpen(false)}
+              duration={5000}
+              color="danger"
+            />
+
+            {/* <Link to="/forget-password">Esqueceu sua senha?</Link> */}
           </div>
         </div>
       </IonContent>

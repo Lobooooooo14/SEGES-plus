@@ -13,7 +13,7 @@ import {
 } from "@ionic/react"
 import { useMaskito } from "@maskito/react"
 
-import { validateCPF } from "../../utils"
+import { validations } from "@/utils"
 
 const ForgetPassword: React.FC = () => {
   const [cpf, setCpf] = useState("")
@@ -75,7 +75,9 @@ const ForgetPassword: React.FC = () => {
 
                 setCpf(value)
                 if (value === "") return
-                validateCPF(value) ? setCPFIsValid(true) : setCPFIsValid(false)
+                validations.validateCPF(value)
+                  ? setCPFIsValid(true)
+                  : setCPFIsValid(false)
               }}
               onIonBlur={() => setCPFIsTouched(true)}
               ref={async (cardRef) => {
@@ -86,7 +88,7 @@ const ForgetPassword: React.FC = () => {
               }}
             />
             <IonButton
-              disabled={!validateCPF(cpf) || loading}
+              disabled={!validations.validateCPF(cpf) || loading}
               onClick={() => {
                 setLoading(true)
                 present({
