@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "cap run android",
     "sync": "npx @capacitor/assets generate && cap sync",
-    "build": "tsc && vite build && npm run sync",
-    "build:android": "npm run build && bash ./scripts/build.sh",
-    "preview": "vite preview",
+    "build:vite": "tsc && vite build",
+    "build:release": "npm run build:vite && npm run sync && bash ./scripts/build.sh --release",
+    "build:debug": "npm run build:vite && npm run sync && bash ./scripts/build.sh --debug",
     "prettier:fix": "prettier --write .",
     "prettier:check": "prettier --check ."
   },
@@ -23,6 +23,7 @@
     "@maskito/react": "^1.9.0",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
+    "cheerio": "^1.0.0-rc.12",
     "ionicons": "^7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@capacitor/assets": "^3.0.1",
     "@capacitor/cli": "5.5.0",
+    "@types/node": "^20.10.4",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-legacy": "^4.0.2",
