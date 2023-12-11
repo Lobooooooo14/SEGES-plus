@@ -45,7 +45,7 @@ jobs:
         # Build APK
       - name: Build APK
         run: |
-          npm run build:android
+          npm run build:release
           rm -rf ./android/keystore/release.keystore
           
           mv ./android/app/build/outputs/apk/release/app-release-signed.apk ./android/app/build/outputs/apk/release/SEGES+.apk
