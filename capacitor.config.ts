@@ -11,6 +11,14 @@ const config: CapacitorConfig = {
     buildOptions: {
       signingType: "jarsigner"
     }
+  },
+  plugins: {
+    CapacitorHttp: {
+      enabled: true
+    },
+    CapacitorCookies: {
+      enabled: true
+    }
   }
 }
 
