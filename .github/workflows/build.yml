@@ -53,6 +53,10 @@ jobs:
           yes | sdkmanager "build-tools;${ANDROID_BUILD_TOOLS_VERSION}"
 
           PATH="${PATH}:${ANDROID_HOME}/build-tools/${ANDROID_BUILD_TOOLS_VERSION}/"
+          
+          ls ${ANDROID_HOME}/build-tools/${ANDROID_BUILD_TOOLS_VERSION}/
+          where apksigner
+          apksigner --version
 
         # Install NPM dependencies
       - name: Install NPM Dependencies
