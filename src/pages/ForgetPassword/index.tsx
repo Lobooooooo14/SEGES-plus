@@ -1,4 +1,6 @@
 import { useState } from "react"
+
+import { InputInputEventDetail, IonInputCustomEvent } from "@ionic/core"
 import {
   IonBackButton,
   IonButton,
@@ -23,6 +25,26 @@ const ForgetPassword: React.FC = () => {
 
   const [present, dismiss] = useIonLoading()
   const [loading, setLoading] = useState(false)
+
+  const handleCPF = (event: IonInputCustomEvent<InputInputEventDetail>) => {
+    const value = event.detail.value!
+
+    setCpf(value)
+    if (value === "") return
+    validations.validateCPF(value) ? setCPFIsValid(true) : setCPFIsValid(false)
+  }
+
+  const handleSubmit = () => {
+    setLoading(true)
+    present({
+      message: "Carregando",
+      duration: 1000
+    })
+
+    // TODO: implement forget password
+
+    setLoading(false)
+  }
 
   const CPFMask = useMaskito({
     options: {
@@ -70,15 +92,7 @@ const ForgetPassword: React.FC = () => {
               placeholder="000.000.000-00"
               errorText="CPF inválido"
               value={cpf}
-              onIonInput={(e) => {
-                const value = e.detail.value!
-
-                setCpf(value)
-                if (value === "") return
-                validations.validateCPF(value)
-                  ? setCPFIsValid(true)
-                  : setCPFIsValid(false)
-              }}
+              onIonInput={(e) => handleCPF(e)}
               onIonBlur={() => setCPFIsTouched(true)}
               ref={async (cardRef) => {
                 if (cardRef) {
@@ -89,17 +103,7 @@ const ForgetPassword: React.FC = () => {
             />
             <IonButton
               disabled={!validations.validateCPF(cpf) || loading}
-              onClick={() => {
-                setLoading(true)
-                present({
-                  message: "Carregando",
-                  duration: 1000
-                })
-
-                // TODO: implement forget password
-
-                setLoading(false)
-              }}
+              onClick={() => handleSubmit()}
             >
               Enviar
             </IonButton>

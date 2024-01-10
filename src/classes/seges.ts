@@ -1,4 +1,5 @@
 import { CapacitorCookies, CapacitorHttp, HttpResponse } from "@capacitor/core"
+
 import { loginDivExists } from "./scrapping"
 
 class Seges {

@@ -1,4 +1,5 @@
 import * as cheerio from "cheerio"
+
 import { handleTitle } from "../utils/handles"
 
 export const loginDivExists = (html: string): boolean => {

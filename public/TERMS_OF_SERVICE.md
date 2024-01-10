@@ -1,41 +1,24 @@
-# Índice:
-
-- [TL;DR](#tldr)
-- [Termos de Serviço](#termos-de-serviço)
-  - [1. Uso do Aplicativo](#1-uso-do-aplicativo)
-    - [Login e Coleta de Dados](#login-e-coleta-de-dados)
-    - [Armazenamento Local](#armazenamento-local)
-    - [Limitações e Bugs](#limitações-e-bugs)
-  - [2. Responsabilidade e Uso Adequado](#2-responsabilidade-e-uso-adequado)
-    - [Responsabilidade Limitada](#responsabilidade-limitada)
-    - [Modificações no Site Original](#modificações-no-site-original)
-    - [Projeto Estudantil](#projeto-estudantil)
-  - [3. Segurança e Integridade](#3-segurança-e-integridade)
-    - [Armazenamento Local](#armazenamento-local)
-    - [Política Anti-Coleta de Dados](#política-anti-coleta-de-dados)
-  - [4. Condições de Uso](#4-condições-de-uso)
-
 # TL;DR
 
 Bem-vindo ao SEGES+! Ao usar o aplicativo, concorda com:
 
-**Login e Coleta de Dados:** Usamos suas credenciais para acesso ao site oficial e web scraping para obter informações.
+**Coleta de Dados:** Usamos suas credenciais para acesso ao site original do SEGES e com isso obter os dados necessários.
 
-**Armazenamento Local:** O aplicativo pode armazenar localmente dados para uso offline.
+**Armazenamento Local:** O aplicativo pode armazenar localmente dados para uso offline, tais como informações do aluno, boletins, etc. Isso inclui os dados de login, para permitir o login automaticamente.
 
-**Limitações e Bugs:** Pode conter bugs, sem garantia de funcionamento perfeito devido a possíveis alterações no site original do SEGES.
+**Limitações e Bugs:** Pode haver bugs, sem garantia de um bom funcionamento, devido a possíveis alterações no site original do SEGES.
 
 **Responsabilidade Limitada:** Não assumimos responsabilidade por problemas no uso, como banimentos. Alterações no site original podem afetar o aplicativo.
 
 **Projeto Estudantil:** Desenvolvido por um estudante para estudantes, em constante evolução e de uso opcional.
 
-**Segurança e Integridade:** Armazenamento local é seguro, mas não podemos garantir segurança absoluta devido à escala menor do projeto. Não coletamos informações pessoais.
+**Coleta de dados:** Não será coletado nem armazenado dados pessoais dos usuários, EXCETO dados locais para oferecer o uso offline e login automático.
 
 **Condições de Uso:** Ao usar o SEGES+, concorda com estes termos. Reservamo-nos o direito de modificar ou encerrar o serviço.
 
 # Termos de Serviço
 
-Bem-vindo ao SEGES+! Estes são os Termos de Serviço que regem o uso do aplicativo para proporcionar uma experiência aprimorada ao acessar o Sistema Estadual de Gestão Escolar (SEGES) da Secretaria de Educação do Espírito Santo.
+Bem-vindo ao SEGES+! Estes são os Termos de Serviço que regem o uso do aplicativo para proporcionar uma experiência aprimorada ao acessar o Sistema Estadual de Gestão Escolar (SEGES) da Secretaria de Educação (SEDU).
 
 ## 1. Uso do Aplicativo
 
@@ -69,9 +52,9 @@ O SEGES+ é um projeto desenvolvido por um estudante para estudantes. Esteja cie
 
 ## 3. Segurança e Integridade
 
-### Política Anti-Coleta de Dados
+### Coleta de Dados
 
-Reiteramos que o SEGES+ não coleta nem armazena informações pessoais dos usuários EXETO dados locais para oferecer o uso offline. O objetivo é proporcionar uma interface aprimorada para os dados disponíveis no site original.
+O SEGES+ não coleta nem armazena informações pessoais dos usuários EXCETO dados locais para oferecer o uso offline. O objetivo é proporcionar uma interface aprimorada para os dados disponíveis no site original (https://segespais.caedufjf.net). Esteja ciente de que algumas informações, tais como CPF, senha e dados do aluno, podem ser armazenadas localmente. Não temos acesso a estes dados.
 
 ## 4. Condições de Uso
 

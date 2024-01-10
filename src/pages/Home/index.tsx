@@ -6,7 +6,9 @@ const Home: React.FC = () => {
       <IonToolbar>
         <IonTitle>SEGES+</IonTitle>
       </IonToolbar>
-      <IonContent fullscreen scrollY={false}></IonContent>
+      <IonContent fullscreen scrollY={false}>
+        nada para ver aqui ainda
+      </IonContent>
     </IonPage>
   )
 }

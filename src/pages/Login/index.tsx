@@ -1,6 +1,7 @@
 import { useState } from "react"
-// import { Link } from "react-router-dom"
-import { useMaskito } from "@maskito/react"
+import { Link } from "react-router-dom"
+
+import { InputInputEventDetail, IonInputCustomEvent } from "@ionic/core"
 import {
   IonBadge,
   IonButton,
@@ -12,14 +13,14 @@ import {
   useIonLoading,
   useIonRouter
 } from "@ionic/react"
+import { useMaskito } from "@maskito/react"
 
 import { Seges } from "@/classes"
 import { validations, handles } from "@/utils"
 
 import "./style.css"
 
-import { InputInputEventDetail, IonInputCustomEvent } from "@ionic/core"
-
+// TODO: remake without class
 const SEGES = new Seges()
 
 const Login: React.FC = () => {
@@ -37,8 +38,13 @@ const Login: React.FC = () => {
   const [present, dismiss] = useIonLoading()
   const [loading, setLoading] = useState<boolean>(false)
 
-  const [toastIsOpen, setToastIsOpen] = useState<boolean>(false)
-  const [toastMessage, setToastMessage] = useState<string>("")
+  const [toast, setToast] = useState<{
+    isOpen: boolean
+    message: string
+  }>({
+    isOpen: false,
+    message: ""
+  })
 
   const CPFMask = useMaskito({
     options: {
@@ -95,8 +101,12 @@ const Login: React.FC = () => {
       })
 
       .catch((error) => {
-        setToastMessage(`Erro: ${error}`)
-        setToastIsOpen(true)
+        setToast({
+          isOpen: true,
+          message: `Erro: ${error}`
+        })
+        setLoading(false)
+        dismiss()
       })
   }
 
@@ -153,28 +163,21 @@ const Login: React.FC = () => {
               Entrar
             </IonButton>
             <IonToast
-              isOpen={toastIsOpen}
-              message={toastMessage}
-              onDidDismiss={() => setToastIsOpen(false)}
+              isOpen={toast.isOpen}
+              message={toast.message}
+              onDidDismiss={() => setToast({ ...toast, isOpen: false })}
               duration={5000}
               color="danger"
             />
-
-            {/* <Link to="/forget-password">Esqueceu sua senha?</Link> */}
+            <Link to="/forget-password">Esqueceu sua senha?</Link>
+            <p>
+              Ao utilizar este aplicativo, você concorda com os{" "}
+              <Link to="/terms">termos de serviço</Link> e a{" "}
+              <Link to="/privacy">política de privacidade</Link>.
+            </p>
           </div>
         </div>
       </IonContent>
-      <footer>
-        <IonText>
-          <p>
-            Desenvolvido por{" "}
-            <a href="https://github.com/lobooooooo14" target="_blank">
-              lobooooooo14
-            </a>
-            .
-          </p>
-        </IonText>
-      </footer>
     </IonPage>
   )
 }
