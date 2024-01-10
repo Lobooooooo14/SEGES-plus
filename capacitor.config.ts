@@ -9,7 +9,7 @@ const config: CapacitorConfig = {
   },
   android: {
     buildOptions: {
-      signingType: "jarsigner"
+      signingType: "apksigner"
     }
   },
   plugins: {
