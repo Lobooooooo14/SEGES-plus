@@ -1,10 +1,10 @@
-name: Create draft release
+name: Build
 
 on:
-  push:
-    tags:
-      - '[0-9]+.[0-9]+.[0-9]+*'
-      
+  release:
+    types:
+      - created
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -33,30 +33,8 @@ jobs:
           gradle-version: 7.6
         
         # Setup build tools
-      - name: Setup build tools
-        run: |
-          ANDROID_BUILD_TOOLS_VERSION='33.0.2'
-          ANDROID_HOME=${ANDROID_HOME:-"/opt/android-sdk"}
-          
-          cd /opt
-          
-          wget \
-            -q https://dl.google.com/android/repository/commandlinetools-linux-6609375_latest.zip \
-            -O android-commandline-tools.zip
-          
-          mkdir -p ${ANDROID_HOME}/cmdline-tools
-          unzip -q android-commandline-tools.zip -d ${ANDROID_HOME}/cmdline-tools
-          rm android-commandline-tools.zip
-          
-          PATH="${PATH}:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/cmdline-tools/tools/bin"
-          
-          yes | sdkmanager "build-tools;${ANDROID_BUILD_TOOLS_VERSION}"
-
-          PATH="${PATH}:${ANDROID_HOME}/build-tools/${ANDROID_BUILD_TOOLS_VERSION}/"
-          
-          ls ${ANDROID_HOME}/build-tools/${ANDROID_BUILD_TOOLS_VERSION}/
-          where apksigner
-          apksigner --version
+      - name: Install apksigner
+        run: sudo apt update && sudo apt install -y apksigner
 
         # Install NPM dependencies
       - name: Install NPM Dependencies
