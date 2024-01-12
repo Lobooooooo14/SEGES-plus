@@ -1,6 +1,6 @@
 import { CapacitorCookies, CapacitorHttp, HttpResponse } from "@capacitor/core"
 
-import { loginDivExists } from "./scrapping"
+import { loginDivExists } from "@/utils/scrapping"
 
 class Seges {
   private baseUrl: string

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { Link } from "react-router-dom"
 
 import { InputInputEventDetail, IonInputCustomEvent } from "@ionic/core"
@@ -15,15 +15,14 @@ import {
 } from "@ionic/react"
 import { useMaskito } from "@maskito/react"
 
-import { Seges } from "@/classes"
+import segesContext from "@/contexts/segesContext"
 import { validations, handles } from "@/utils"
 
 import "./style.css"
 
-// TODO: remake without class
-const SEGES = new Seges()
-
 const Login: React.FC = () => {
+  const seges = useContext(segesContext)
+
   const router = useIonRouter()
 
   const [cpf, setCpf] = useState<string>("")
@@ -93,7 +92,8 @@ const Login: React.FC = () => {
     present({
       message: "Carregando"
     })
-    SEGES.login(handles.handleCPF(cpf), password)
+    seges
+      .login(handles.handleCPF(cpf), password)
       .then(() => {
         setLoading(false)
         dismiss()

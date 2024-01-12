@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio"
 
-import { handleTitle } from "../utils/handles"
+import { handleTitle } from "./handles"
 
 export const loginDivExists = (html: string): boolean => {
   const $ = cheerio.load(html)
