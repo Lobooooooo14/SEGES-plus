@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "cap run android",
+    "dev": "ionic cap run android -l --external",
     "sync": "npx @capacitor/assets generate && cap sync",
     "build:vite": "tsc && vite build",
     "build:release": "npm run build:vite && npm run sync && bash ./scripts/build.sh --release",
@@ -16,6 +16,7 @@
     "@capacitor/android": "5.5.0",
     "@capacitor/app": "5.0.6",
     "@capacitor/core": "5.5.0",
+    "@capacitor/splash-screen": "^5.0.6",
     "@ionic/pwa-elements": "^3.2.2",
     "@ionic/react": "^7.0.0",
     "@ionic/react-router": "^7.0.0",

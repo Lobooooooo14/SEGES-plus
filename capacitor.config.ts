@@ -18,6 +18,12 @@ const config: CapacitorConfig = {
     },
     CapacitorCookies: {
       enabled: true
+    },
+    SplashScreen: {
+      launchShowDuration: 1000,
+      launchAutoHide: true,
+      launchFadeOutDuration: 1000,
+      androidScaleType: "CENTER_CROP"
     }
   }
 }
