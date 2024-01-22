@@ -15,13 +15,18 @@ import {
 } from "@ionic/react"
 import { useMaskito } from "@maskito/react"
 
-import segesContext from "@/contexts/segesContext"
+import { useAppStore } from "@/store/AppStore"
+
+import AcceptTos from "@/components/AcceptTos"
+import SegesContext from "@/contexts/SegesContext"
 import { validations, handles } from "@/utils"
 
-import "./style.css"
+import "./style.scss"
 
 const Login: React.FC = () => {
-  const seges = useContext(segesContext)
+  const { isTermsAccepted } = useAppStore()
+
+  const seges = useContext(SegesContext)
 
   const router = useIonRouter()
 
@@ -35,7 +40,7 @@ const Login: React.FC = () => {
   const [passwordIsValid, setPasswordIsValid] = useState<boolean>(false)
 
   const [present, dismiss] = useIonLoading()
-  const [loading, setLoading] = useState<boolean>(false)
+  const [isLoading, setisLoading] = useState<boolean>(false)
 
   const [toast, setToast] = useState<{
     isOpen: boolean
@@ -88,14 +93,14 @@ const Login: React.FC = () => {
   }
 
   const handleSubmit = () => {
-    setLoading(true)
+    setisLoading(true)
     present({
       message: "Carregando"
     })
     seges
       .login(handles.handleCPF(cpf), password)
       .then(() => {
-        setLoading(false)
+        setisLoading(false)
         dismiss()
         router.push("/home", "root")
       })
@@ -105,7 +110,7 @@ const Login: React.FC = () => {
           isOpen: true,
           message: `Erro: ${error}`
         })
-        setLoading(false)
+        setisLoading(false)
         dismiss()
       })
   }
@@ -140,7 +145,6 @@ const Login: React.FC = () => {
                 }
               }}
             />
-
             <IonInput
               className={`${passwordIsValid && "ion-valid"} ${
                 passwordIsValid === false && "ion-invalid"
@@ -157,7 +161,9 @@ const Login: React.FC = () => {
               onIonBlur={() => setPasswordIsTouched(true)}
             />
             <IonButton
-              disabled={!CPFIsValid || !passwordIsValid || loading}
+              disabled={
+                !CPFIsValid || !passwordIsValid || isLoading || !isTermsAccepted
+              }
               onClick={() => handleSubmit()}
             >
               Entrar
@@ -170,11 +176,7 @@ const Login: React.FC = () => {
               color="danger"
             />
             <Link to="/forget-password">Esqueceu sua senha?</Link>
-            <p>
-              Ao utilizar este aplicativo, você concorda com os{" "}
-              <Link to="/terms">termos de serviço</Link> e a{" "}
-              <Link to="/privacy">política de privacidade</Link>.
-            </p>
+            <AcceptTos />
           </div>
         </div>
       </IonContent>

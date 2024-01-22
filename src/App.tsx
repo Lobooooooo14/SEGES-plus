@@ -1,7 +1,7 @@
 import { IonApp, setupIonicReact } from "@ionic/react"
 
 import { Seges } from "@/classes"
-import segesContext from "@/contexts/segesContext"
+import SegesContext from "@/contexts/SegesContext"
 import Routes from "@/routes"
 
 setupIonicReact()
@@ -11,9 +11,9 @@ const App: React.FC = () => {
 
   return (
     <IonApp>
-      <segesContext.Provider value={seges}>
+      <SegesContext.Provider value={seges}>
         <Routes />
-      </segesContext.Provider>
+      </SegesContext.Provider>
     </IonApp>
   )
 }

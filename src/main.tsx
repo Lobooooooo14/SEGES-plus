@@ -19,10 +19,12 @@ import "@ionic/react/css/text-alignment.css"
 import "@ionic/react/css/text-transformation.css"
 import "@ionic/react/css/typography.css"
 
-import App from "./App"
+import "@/styles/globals.scss"
 
 /* Theme variables */
-import "./theme/variables.css"
+import "@/theme/variables.css"
+
+import App from "./App"
 
 defineCustomElements(window)
 

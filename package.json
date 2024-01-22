@@ -16,6 +16,7 @@
     "@capacitor/android": "5.5.0",
     "@capacitor/app": "5.0.6",
     "@capacitor/core": "5.5.0",
+    "@capacitor/preferences": "^5.0.6",
     "@capacitor/splash-screen": "^5.0.6",
     "@ionic/pwa-elements": "^3.2.2",
     "@ionic/react": "^7.0.0",
@@ -30,7 +31,8 @@
     "react-dom": "^18.2.0",
     "react-markdown": "^9.0.1",
     "react-router": "^5.3.4",
-    "react-router-dom": "^5.3.4"
+    "react-router-dom": "^5.3.4",
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
     "@capacitor/assets": "^3.0.1",

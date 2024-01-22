@@ -6,6 +6,13 @@
   "printWidth": 80,
   "endOfLine": "lf",
   "plugins": ["@trivago/prettier-plugin-sort-imports"],
-  "importOrder": ["^react(.*)", "<THIRD_PARTY_MODULES>", "@/(.*)", "^[./]"],
+  "importOrder": [
+    "^react(.*)",
+    "^@capacitor(.*)",
+    "<THIRD_PARTY_MODULES>",
+    "^@/store(.*)",
+    "@/(.*)",
+    "^[./]"
+  ],
   "importOrderSeparation": true
 }
