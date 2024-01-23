@@ -10,22 +10,20 @@ import {
   RefresherEventDetail
 } from "@ionic/react"
 
-import constants from "@/constants"
+import { TosUrl, PrivacyUrl } from "@/constants"
 
 import "./styles.scss"
 
 const TosModal: React.FC<{ type: "TOS" | "PRIVACY" | null }> = ({ type }) => {
   const [markdown, setMarkdown] = useState<string>(
-    `Ops! Algo deu muito errado. Visite os [termos de serviços](${constants.TosUrl.github}) e a [política de privacidade](${constants.PrivacyUrl.github}) no repositório do projeto.`
+    `Ops! Algo deu muito errado. Visite os [termos de serviços](${TosUrl.github}) e a [política de privacidade](${PrivacyUrl.github}) no repositório do projeto.`
   )
   const [loading, setLoading] = useState<boolean>(true)
 
   const handleFetchMarkdown = async () => {
     if (!type) return
 
-    const response = await fetch(
-      type === "TOS" ? constants.TosUrl.raw : constants.PrivacyUrl.raw
-    )
+    const response = await fetch(type === "TOS" ? TosUrl.raw : PrivacyUrl.raw)
 
     if (!response.ok) {
       setLoading(false)

@@ -10,11 +10,13 @@ import {
   IonPage,
   IonText,
   IonTitle,
+  IonToast,
   IonToolbar,
   useIonLoading
 } from "@ionic/react"
 import { useMaskito } from "@maskito/react"
 
+import { useSegesResetPassword } from "@/hooks/seges"
 import { validations } from "@/utils"
 
 const ForgetPassword: React.FC = () => {
@@ -25,6 +27,14 @@ const ForgetPassword: React.FC = () => {
 
   const [present, dismiss] = useIonLoading()
   const [loading, setLoading] = useState(false)
+
+  const [toast, setToast] = useState<{
+    isOpen: boolean
+    message: string
+  }>({
+    isOpen: false,
+    message: ""
+  })
 
   const handleCPF = (event: IonInputCustomEvent<InputInputEventDetail>) => {
     const value = event.detail.value!
@@ -37,13 +47,23 @@ const ForgetPassword: React.FC = () => {
   const handleSubmit = () => {
     setLoading(true)
     present({
-      message: "Carregando",
-      duration: 1000
+      message: "Carregando"
     })
 
-    // TODO: implement forget password
+    useSegesResetPassword(cpf)
+      .then(() => {
+        setLoading(false)
+        dismiss()
+      })
 
-    setLoading(false)
+      .catch((error) => {
+        setToast({
+          isOpen: true,
+          message: `Erro: ${error}`
+        })
+        setLoading(false)
+        dismiss()
+      })
   }
 
   const CPFMask = useMaskito({
@@ -107,6 +127,13 @@ const ForgetPassword: React.FC = () => {
             >
               Enviar
             </IonButton>
+            <IonToast
+              isOpen={toast.isOpen}
+              message={toast.message}
+              onDidDismiss={() => setToast({ ...toast, isOpen: false })}
+              duration={5000}
+              color="danger"
+            />
           </div>
         </div>
       </IonContent>

@@ -1,5 +1,5 @@
-import * as handles from "./handles"
-import * as scrapping from "./scrapping"
+import * as storagePreferences from "./storagePreferences"
+import * as tools from "./tools"
 import * as validations from "./validations"
 
-export { validations, handles, scrapping }
+export { validations, tools, storagePreferences }

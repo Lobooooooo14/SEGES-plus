@@ -1,3 +1,5 @@
+import { passwordRegex } from "@/constants"
+
 export const validateCPF = (cpf: string): boolean => {
   cpf = cpf.replace(/[^\d]/g, "")
 
@@ -25,8 +27,5 @@ export const validateCPF = (cpf: string): boolean => {
 }
 
 export const validatePassword = (password: string): boolean => {
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$.%^&*])[^\s]{6,}$/
-
   return passwordRegex.test(password)
 }

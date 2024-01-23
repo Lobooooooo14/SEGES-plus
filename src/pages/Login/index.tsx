@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
 import { InputInputEventDetail, IonInputCustomEvent } from "@ionic/core"
@@ -18,17 +18,15 @@ import { useMaskito } from "@maskito/react"
 import { useAppStore } from "@/store/AppStore"
 
 import AcceptTos from "@/components/AcceptTos"
-import SegesContext from "@/contexts/SegesContext"
-import { validations, handles } from "@/utils"
+import { useSegesLogin } from "@/hooks/seges"
+import { validations } from "@/utils"
 
 import "./style.scss"
 
 const Login: React.FC = () => {
   const { isTermsAccepted } = useAppStore()
 
-  const seges = useContext(SegesContext)
-
-  const router = useIonRouter()
+  // const router = useIonRouter()
 
   const [cpf, setCpf] = useState<string>("")
   const [password, setPassword] = useState<string>("")
@@ -92,17 +90,17 @@ const Login: React.FC = () => {
       : setPasswordIsValid(false)
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setisLoading(true)
     present({
       message: "Carregando"
     })
-    seges
-      .login(handles.handleCPF(cpf), password)
+
+    await useSegesLogin(cpf, password)
       .then(() => {
         setisLoading(false)
         dismiss()
-        router.push("/home", "root")
+        // router.push("/home", "root")
       })
 
       .catch((error) => {

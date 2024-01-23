@@ -4,7 +4,7 @@ import { IonRouterOutlet } from "@ionic/react"
 import { IonReactRouter } from "@ionic/react-router"
 
 import ForgetPassword from "@/pages/ForgetPassword"
-import Home from "@/pages/Home"
+// import Home from "@/pages/Home"
 import Login from "@/pages/Login"
 
 const Router: React.FC = () => {
@@ -13,7 +13,7 @@ const Router: React.FC = () => {
       <IonRouterOutlet>
         <Route exact path="/login" component={Login} />
         <Route exact path="/forget-password" component={ForgetPassword} />
-        <Route exact path="/" render={() => <Home />} />
+        <Route exact path="/" component={Login} />
         <Switch>
           <Redirect to="/" />
         </Switch>
