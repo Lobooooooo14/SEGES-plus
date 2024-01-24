@@ -11,6 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+        # Install Node 
+      - name: 📥 Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/hydrogen
+          cache: npm
+      
+      # Install NPM dependencies
+      - name: 📥 Install NPM Dependencies
+        run: npm ci
+
       - name: ✨ Checking
         uses: creyD/prettier_action@v4.3
         with:
