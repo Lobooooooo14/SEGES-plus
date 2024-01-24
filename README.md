@@ -42,6 +42,55 @@ O principal obstáculo para o projeto sem dúvidas é o `CORS` _(Cross-Origin Re
 
 Sendo assim, a solução é desenvolver um app nativo e utilizar a [Capacitor HTTP API](https://capacitorjs.com/docs/apis/http/), Ela corrige e aplica patches no `fetch` e no `XMLHttpRequest` para usarem as bibliotecas nativas do sistema, _seria como acessar o website oficial diretamente pelo navegador_. Porém esta solução não se aplica a web, apenas dispositivos nativos (iOS/Android).[^3]
 
+## Executando
+
+O projeto foi desenvolvido utilizando [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Ionic Framework](https://ionicframework.com/), [Capacitor](https://capacitorjs.com/) e [Vite](https://vitejs.dev/). Abaixo estão as ferramentas para desenvolver o aplicativo, os comandos podem variar dependendo do seu sistema operacional:
+
+| Requisitos | Versão       | Observação                                                                                                                                      |
+| ---------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Node       | lts/hydrogen | Node 18.x                                                                                                                                       |
+| Java       | 17           |                                                                                                                                                 |
+| Gradle     | 7.6          |                                                                                                                                                 |
+| Apksigner  | 0.9          | [Suporte para assinatura v2, Android R+](https://developer.android.com/about/versions/11/behavior-changes-11?hl=pt-br#compressed-resource-file) |
+
+1. Depois de instalar e configurar as ferramentas, clone o repositório para o seu dispositivo com o comando abaixo:
+
+```sh
+git clone https://github.com/Lobooooooo14/SEGES-plus.git SEGES+
+```
+
+2. Entre na pasta do projeto e instale as dependências:
+
+```sh
+cd SEGES+
+npm ci
+```
+
+3. Crie sua keystore para posteriormente assinar o APK. Deve se parecer com isso:
+
+```sh
+mkdir -p ./android/keystore/
+keytool -genkey -v -keystore ./android/keystore/release.keystore -alias seuAliasAqui -keyalg RSA -keysize 2048 -validity 10000
+```
+
+4. Crie um arquivo .env na raiz do projeto e configure as variáveis abaixo:
+
+```sh
+KEYSTOREPASS=
+KEYSTOREALIASPASS=
+KEYSTOREALIAS=
+```
+
+5. Caso tudo esteja correto, agora você pode utilizar os scripts do npm para executar as seguintes tarefas:
+
+| Comando                 | Ação                                                                                                                                          |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev`           | Inicia o aplicativo em modo desenvolvimento, com hot reloading e Chrome inspect. Certifique-se de usar um emulador ou um dispositivo Android. |
+| `npm run build:debug`   | Compila o app e assina o APK com uma assinatura de debug para desenvolvimento. Também é possível utilizar Chrome inspect.                     |
+| `npm run build:release` | Compila o app e assina o APK para lançamento.                                                                                                 |
+| `npm run prettier:fix`  | Corrige a formação dos arquivos.                                                                                                              |
+| `npm run sync`          | Sincroniza (copia + atualiza) as dependências e arquivos para a versão nativa.                                                                |
+
 ## Instalação
 
 > [!CAUTION]
