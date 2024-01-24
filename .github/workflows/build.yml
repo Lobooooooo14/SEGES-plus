@@ -1,4 +1,4 @@
-name: Build
+name: 🏗️ Build
 
 on:
   release:
@@ -10,44 +10,44 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Checkout
+      - name: ✅ Checkout
         uses: actions/checkout@v2.3.4
       
         # Install Node 
-      - name: Install Node
+      - name: 📥 Install Node
         uses: actions/setup-node@v3
         with:
           node-version: lts/hydrogen
           cache: npm
       
         # Install Java
-      - name: Install Java
+      - name: 📥 Install Java
         uses: actions/setup-java@v1.4.3
         with:
           java-version: 17
       
         # Install Gradle
-      - name: Install Gradle
+      - name: 📥 Install Gradle
         uses: gradle/gradle-build-action@v2
         with:
           gradle-version: 7.6
         
         # Setup build tools
-      - name: Install apksigner
+      - name: 📥 Install apksigner
         run: sudo apt update && sudo apt install -y apksigner
 
         # Install NPM dependencies
-      - name: Install NPM Dependencies
+      - name: 📥 Install NPM Dependencies
         run: npm ci
         
         # Decode keystore
-      - name: Decode keystore
+      - name: 🔑 Decode keystore
         run: |
           mkdir -p ./android/keystore/
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > ./android/keystore/release.keystore
         
         # Build APK
-      - name: Build APK
+      - name: 🏗️ Build APK
         run: |
           npm run build:release
           rm -rf ./android/keystore/release.keystore
@@ -62,7 +62,7 @@ jobs:
           WORKFLOW: true
         
         # Create draft release
-      - name: Create draft release
+      - name: 📤 Create draft release
         uses: softprops/action-gh-release@v1
         with:
           draft: true
