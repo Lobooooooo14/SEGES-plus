@@ -32,7 +32,7 @@ jobs:
         with:
           gradle-version: 7.6
         
-        # Setup build tools
+        # Install apksigner
       - name: 📥 Install apksigner
         run: sudo apt update && sudo apt install -y apksigner
 
