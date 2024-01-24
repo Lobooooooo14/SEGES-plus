@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/icon-foreground.png" width="100" />
+  <img src="./assets/icon-foreground.png" alt="SEGES+" width="100" />
   <h1>SEGES+</h1>
 </div>
 
@@ -49,8 +49,8 @@ Sendo assim, a solução é desenvolver um app nativo e utilizar a [Capacitor HT
 
 Você pode baixar o `APK` mais recente do SEGES+ clicando no botão abaixo:
 
-<a href="https://github.com/Lobooooooo14/tempyrature/releases/latest/">
-  <img src="https://github.com/Lobooooooo14/SEGES-plus/assets/88998991/f1fbe840-8e05-47ae-859c-f1f99f85fbca" width="200">
+<a href="https://github.com/Lobooooooo14/SEGES-plus/releases/latest/download/SEGES+.apk">
+  <img src="https://github.com/Lobooooooo14/SEGES-plus/assets/88998991/f1fbe840-8e05-47ae-859c-f1f99f85fbca" alt="Download APK" width="200">
 </a>
 
 No momento, o SEGES+ está disponível para download através das [releases do GitHub](https://github.com/Lobooooooo14/SEGES-plus/releases).
