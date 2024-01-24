@@ -91,6 +91,36 @@ KEYSTOREALIAS=
 | `npm run prettier:fix`  | Corrige a formação dos arquivos.                                                                                                              |
 | `npm run sync`          | Sincroniza (copia + atualiza) as dependências e arquivos para a versão nativa.                                                                |
 
+## Doações
+
+Caso queira apoiar o projeto, você pode doar de duas maneiras: Github Sponsors, com valor mínimo de **\$ 1,00 dolar** ou Pix com valor mínimo de **R\$ 1,00 reais**:
+
+<table>
+<thead>
+  <tr>
+    <th>Método</th>
+    <th>Link</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>
+      <a href="https://github.com/sponsors/Lobooooooo14" target="_blank">
+        <img alt="Github Sponsors" src="https://github.com/Lobooooooo14/SEGES-plus/assets/88998991/383d1652-b988-451a-a5cf-d7aac4767ff4" width="100">
+      </a>
+    </td>
+    <td><a href="https://github.com/sponsors/Lobooooooo14" target="_blank">Github Sponsors</a></td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://tipa.ai/lobo" target="_blank">
+        <img alt="Pix" src="https://github.com/Lobooooooo14/SEGES-plus/assets/88998991/a1a22495-6e4c-4d59-8732-1295e84592ec" width="100"></td>
+      </a>
+    <td><a href="https://tipa.ai/lobo" target="_blank">Pix</a></td>
+  </tr>
+</tbody>
+</table>
+
 ## Instalação
 
 > [!CAUTION]
