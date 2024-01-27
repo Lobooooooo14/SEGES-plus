@@ -12,11 +12,11 @@ const _login = async (
     password: string
   },
   cookie: string,
-  endpoint: string = "/inicio.faces"
+  endpoint: string
 ): Promise<void> => {
   const cleanedCPF = tools.cleanCPF(auth.cpf)
 
-  const responseLogin = await CapacitorHttp.post({
+  const response = await CapacitorHttp.post({
     url: `${segesBaseURL}/login.faces;jsessionid=${cookie}`,
     headers: {
       cookies: `JSESSIONID=${cookie}`
@@ -32,8 +32,8 @@ const _login = async (
 
   if (
     !(
-      responseLogin.status === 302 &&
-      responseLogin.headers["Location"] ===
+      response.status === 302 &&
+      response.headers["Location"] ===
         `http://segespais.caedufjf.net/seges${endpoint}`
     )
   ) {
@@ -45,37 +45,41 @@ const _login = async (
 
 export const login = async (
   auth: { cpf: string; password: string },
-  endpoint: string = "/inicio.faces"
+  endpoint: string
 ): Promise<void> => {
   const cookies = await getCookies()
 
+  // if the session cookie already exists, update the session
   if (cookies.JSESSIONID !== undefined) {
-    const responseInicioCookie = await CapacitorHttp.get({
+    const responseWithCurrentCookie = await CapacitorHttp.get({
       url: `${segesBaseURL}${endpoint}`,
       headers: {
         Cookie: `JSESSIONID=${cookies.JSESSIONID}`
       }
     })
 
-    if (Scrapping.loginDivExists(responseInicioCookie.data)) {
-      await _login(auth, cookies.JSESSIONID)
+    if (Scrapping.loginDivExists(responseWithCurrentCookie.data)) {
+      await _login(auth, cookies.JSESSIONID, endpoint)
     }
-  } else {
-    const responseInicioNewCookie = await CapacitorHttp.get({
+  }
+
+  // if not, get a new session cookie and login to validate it
+  else {
+    const responseNewCookie = await CapacitorHttp.get({
       url: `${segesBaseURL}${endpoint}`
     })
 
-    if (responseInicioNewCookie.headers["Set-Cookie"] === undefined) {
+    if (responseNewCookie.headers["Set-Cookie"] === undefined) {
       throw new Error("Login failed: JSESSIONID not found in Set-Cookie header")
     }
 
     const responseInicioNewCookies = await getCookies()
-    await _login(auth, responseInicioNewCookies.JSESSIONID)
+    await _login(auth, responseInicioNewCookies.JSESSIONID, endpoint)
   }
 
   const currentCookies = await getCookies()
 
-  const responseInicio = await CapacitorHttp.get({
+  const response = await CapacitorHttp.get({
     url: `${segesBaseURL}${endpoint}`,
     headers: {
       cookies: `JSESSIONID=${currentCookies.JSESSIONID}`
@@ -83,13 +87,13 @@ export const login = async (
   })
 
   if (
-    responseInicio.status !== 200 ||
-    responseInicio.headers["Set-Cookie"] !== undefined ||
-    responseInicio.data.includes("Login")
+    response.status !== 200 ||
+    response.headers["Set-Cookie"] !== undefined ||
+    Scrapping.loginDivExists(response.data)
   ) {
     throw new Error("Login failed")
   }
 
-  console.log(responseInicio)
+  console.log(response)
   console.log("login success")
 }
