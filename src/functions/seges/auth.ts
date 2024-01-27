@@ -47,19 +47,19 @@ export const login = async (
   auth: { cpf: string; password: string },
   endpoint: string
 ): Promise<void> => {
-  const cookies = await getCookies()
+  const currentCookies = await getCookies()
 
-  // if the session cookie already exists, update the session
-  if (cookies.JSESSIONID !== undefined) {
+  // if the session cookie already exists, refresh the session
+  if (currentCookies.JSESSIONID !== undefined) {
     const responseWithCurrentCookie = await CapacitorHttp.get({
       url: `${segesBaseURL}${endpoint}`,
       headers: {
-        Cookie: `JSESSIONID=${cookies.JSESSIONID}`
+        Cookie: `JSESSIONID=${currentCookies.JSESSIONID}`
       }
     })
 
     if (Scrapping.loginDivExists(responseWithCurrentCookie.data)) {
-      await _login(auth, cookies.JSESSIONID, endpoint)
+      await _login(auth, currentCookies.JSESSIONID, endpoint)
     }
   }
 
@@ -73,16 +73,16 @@ export const login = async (
       throw new Error("Login failed: JSESSIONID not found in Set-Cookie header")
     }
 
-    const responseInicioNewCookies = await getCookies()
-    await _login(auth, responseInicioNewCookies.JSESSIONID, endpoint)
+    const newCookies = await getCookies()
+    await _login(auth, newCookies.JSESSIONID, endpoint)
   }
 
-  const currentCookies = await getCookies()
+  const cookies = await getCookies()
 
   const response = await CapacitorHttp.get({
     url: `${segesBaseURL}${endpoint}`,
     headers: {
-      cookies: `JSESSIONID=${currentCookies.JSESSIONID}`
+      cookies: `JSESSIONID=${cookies.JSESSIONID}`
     }
   })
 
