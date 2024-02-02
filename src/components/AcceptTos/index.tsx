@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { memo, useState } from "react"
 
 import {
   IonButton,
@@ -77,4 +77,4 @@ const AcceptTos: React.FC = () => {
   )
 }
 
-export default AcceptTos
+export default memo(AcceptTos)
