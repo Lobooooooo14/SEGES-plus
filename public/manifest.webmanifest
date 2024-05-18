@@ -1,6 +1,4 @@
 {
-  "short_name": "SEGES+",
-  "name": "SEGES+",
   "icons": [
     {
       "src": "../icons/icon-48.webp",
@@ -44,9 +42,5 @@
       "sizes": "512x512",
       "purpose": "any maskable"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  ]
 }

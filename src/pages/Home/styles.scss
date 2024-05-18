@@ -1,0 +1,9 @@
+ion-list.transparent-list {
+  background-color: transparent;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  ion-item {
+    --background: transparent;
+  }
+}

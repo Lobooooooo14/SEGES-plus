@@ -1,5 +1,7 @@
 import { CapacitorHttp } from "@capacitor/core"
 
+import { useUserStore } from "@/store/UserStore"
+
 import { segesBaseURL } from "@/constants"
 import { Scrapping } from "@/functions"
 import { tools } from "@/utils"
@@ -94,6 +96,32 @@ export const login = async (
     throw new Error("Login failed")
   }
 
-  console.log(response)
+  const finalCookies = await getCookies()
+  useUserStore.getState().auth.jsSessionId = finalCookies.JSESSIONID
   console.log("login success")
+}
+
+export const isLogged = async (): Promise<boolean> => {
+  const currentCookies = await getCookies()
+
+  if (currentCookies.JSESSIONID !== undefined) {
+    const responseWithCurrentCookie = await CapacitorHttp.get({
+      url: `${segesBaseURL}/inicio.faces`,
+      readTimeout: 10000,
+      headers: {
+        Cookie: `JSESSIONID=${currentCookies.JSESSIONID}`
+      }
+    })
+
+    if (!Scrapping.loginDivExists(responseWithCurrentCookie.data)) {
+      return true
+    }
+  }
+
+  const finalCookies = await getCookies()
+  useUserStore.setState((state) => ({
+    ...state,
+    auth: { ...state.auth, jsSessionId: finalCookies.JSESSIONID }
+  }))
+  return false
 }

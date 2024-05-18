@@ -48,7 +48,7 @@ const ResetPasswordForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <IonText>
+      <IonText className="text-center">
         <h1>Recuperação de senha</h1>
       </IonText>
       <InputCPF />

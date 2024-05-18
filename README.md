@@ -1,4 +1,9 @@
 <div align="center">
+  <h1>Projeto descontinuado</h1>
+  <p>Recentemente, a Secretaria de Educação anunciou que <a href="https://sedu.es.gov.br/Not%C3%ADcia/sedu-vai-disponibilizar-novo-sistema-estadual-de-gestao-escolar-seges" target="_blank">um novo sistema de gestão escolar será lançado</a>. Por isso, o aplicativo foi descontinuado e arquivado.</p>
+</div>
+
+<div align="center">
   <img src="./assets/icon-foreground.png" alt="SEGES+" width="100" />
   <h1>SEGES+</h1>
 </div>
