@@ -51,7 +51,7 @@ O projeto foi desenvolvido utilizando [React](https://react.dev/), [TypeScript](
 | Node       | lts/hydrogen | Node 18.x                                                                                                                                       |
 | Java       | 17           |                                                                                                                                                 |
 | Gradle     | 7.6          |                                                                                                                                                 |
-| Apksigner  | 0.9          | [Suporte para assinatura v2, Android R+](https://developer.android.com/about/versions/11/behavior-changes-11?hl=pt-br#compressed-resource-file) |
+| Apksigner  | 31.0.2-1     | [Suporte para assinatura v2, Android R+](https://developer.android.com/about/versions/11/behavior-changes-11?hl=pt-br#compressed-resource-file) |
 
 1. Depois de instalar e configurar as ferramentas, clone o repositório para o seu dispositivo com o comando abaixo:
 
