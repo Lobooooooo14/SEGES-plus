@@ -7,7 +7,7 @@ import { IonApp, setupIonicReact } from "@ionic/react"
 import Toast from "@/components/Toast"
 import Routes from "@/routes"
 
-setupIonicReact({ mode: "ios" })
+setupIonicReact({ mode: "md" })
 
 const App: React.FC = () => {
   useEffect(() => {
