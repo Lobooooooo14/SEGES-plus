@@ -116,13 +116,6 @@ Caso queira apoiar o projeto, você pode doar de duas maneiras: Github Sponsors,
     </td>
     <td><a href="https://github.com/sponsors/Lobooooooo14" target="_blank">Github Sponsors</a></td>
   </tr>
-  <tr>
-    <td>
-      <a href="https://tipa.ai/lobo" target="_blank">
-        <img alt="Pix" src="https://github.com/Lobooooooo14/SEGES-plus/assets/88998991/a1a22495-6e4c-4d59-8732-1295e84592ec" width="100"></td>
-      </a>
-    <td><a href="https://tipa.ai/lobo" target="_blank">Pix</a></td>
-  </tr>
 </tbody>
 </table>
 
